@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
 
-app.use((req, res) => {
+app.use((req, res, next) => {
     let {query} = req.query;
-    console.log(query);
-    console.log("Hi, I am middleware");
-    res.send("middleware finished");
+   console.log("Hi, I am middleware");
+   next(); 
 });
 
 
