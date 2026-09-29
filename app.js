@@ -12,10 +12,7 @@ const app = express();
 //    next(); 
 // });
 
-app.use( (req, res, next) => {
-    console.log(req.method);
-    next();
-});
+
 
 app.get("/", (req, res) => {
     res.send("Hi, I am root.");
@@ -24,6 +21,14 @@ app.get("/", (req, res) => {
 app.get("/random", (req, res) => {
     res.send("this is a random page");
 }); /* ; */ 
+
+//logger - morgan
+app.use( (req, res, next) => {
+    req.time = Date.now();
+    console.log(req.method, req.hostname, req.path, req.time);
+    next();
+});
+
 
  app.listen(8080, () => {
      console.log("server listening to port 8080");
