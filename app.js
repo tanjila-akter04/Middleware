@@ -12,7 +12,10 @@ const app = express();
 //    next(); 
 // });
 
-
+app.use("/random", (req, res, next) => {
+    console.log("I am only for random");
+    next();
+});
 
 app.get("/", (req, res) => {
     res.send("Hi, I am root.");
@@ -20,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.get("/random", (req, res) => {
     res.send("this is a random page");
-}); /* ; */ 
+}); 
 
 //logger - morgan
 app.use( (req, res, next) => {
