@@ -32,6 +32,10 @@ app.use( (req, res, next) => {
     next();
 });
 
+// 404 page not found
+app.use((req, res, next) => {
+    res.status(404).send("Page not found!");
+});
 
  app.listen(8080, () => {
      console.log("server listening to port 8080");
