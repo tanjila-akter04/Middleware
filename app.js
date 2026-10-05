@@ -14,10 +14,10 @@ const app = express();
 
 app.use("/api", (req, res, next) => {
     let {token} = req.query;
-    if (token) {
-        return res.status(401).send("Unauthorized");
+    if (token === "giveaccess") {
+        next();
     }
-  
+  res.send("ACCESS DENIED");
 });
 
 app.get("/random", (req, res, next) => {
