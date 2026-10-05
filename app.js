@@ -12,15 +12,16 @@ const app = express();
 //    next(); 
 // });
 
-app.use("/api", (req, res, next) => {
+const checkToken = (req, res, next) => {
     let {token} = req.query;
     if (token === "giveaccess") {
         next();
+    } else {
+        res.send("ACCESS DENIED");
     }
-  res.send("ACCESS DENIED");
-});
+};
 
-app.get("/random", (req, res, next) => {
+app.get("/api", checkToken, (req, res) => {
     res.send("data");
 });
 
